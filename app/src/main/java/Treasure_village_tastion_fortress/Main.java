@@ -65,7 +65,7 @@ public class Main {
             File file = new File(OPTIONS_PATHNAME);
             Scanner reader = new Scanner(file);
             StructureSeedThread.START_SEED = Long.parseLong(reader.nextLine());
-            StructureSeedThread.END_SEED = Integer.parseInt(reader.nextLine());
+            StructureSeedThread.END_SEED = Long.parseLong(reader.nextLine());
             THREAD_COUNT = Integer.parseInt(reader.nextLine());
             reader.close();
         } catch (FileNotFoundException e) {
