@@ -24,7 +24,7 @@ public class StructureSeedFilter {
         return (double1 < integer3) ? (integer3 - 1) : integer3;
     }
 
-    public static void filterStructureSeeds(int threadCount, long startSeed, int offset, long maxSeeds) {
+    public static void filterStructureSeeds(int threadCount, long startSeed, int offset, long END_SEED) {
         ChunkRand chunkRand = new ChunkRand();
         BuriedTreasure buriedTreasure = new BuriedTreasure(MCVersion.v1_16_1);
         Village village = new Village(MCVersion.v1_16_1);
@@ -32,7 +32,7 @@ public class StructureSeedFilter {
         Fortress fortress = new Fortress(MCVersion.v1_16_1);
         EndCity endCity = new EndCity(MCVersion.v1_16_1);
 
-        for (long structureSeed = startSeed + offset; structureSeed < 1L << 48; structureSeed += threadCount) {
+        for (long structureSeed = startSeed + offset; structureSeed < END_SEED; structureSeed += threadCount) {
             CPos treasure;
             boolean tCheck = false;
             for (int chunkX = -2; chunkX < 1; chunkX++) {
@@ -90,7 +90,6 @@ public class StructureSeedFilter {
             if (!endCity.canStart((RegionStructure.Data<EndCity>) city, structureSeed, chunkRand)) continue;
             System.out.println(structureSeed);
             filteredSeeds.add(structureSeed);
-            if (filteredSeeds.size() > maxSeeds) break;
         }
     }
 }

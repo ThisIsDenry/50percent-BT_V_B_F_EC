@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 class StructureSeedThread extends Thread {
     public static long START_SEED;
-    public static long MAX_SEEDS;
+    public static long END_SEED;
     public int threadCount;
     public int offset;
 
@@ -30,7 +30,7 @@ class StructureSeedThread extends Thread {
                     "Thread " + Thread.currentThread().getId()
                             + " is running");
 
-            StructureSeedFilter.filterStructureSeeds(this.threadCount, START_SEED, this.offset, MAX_SEEDS);
+            StructureSeedFilter.filterStructureSeeds(this.threadCount, START_SEED, this.offset, END_SEED);
         }
         catch (Exception e) {
             System.out.println("Exception is caught");
@@ -65,7 +65,7 @@ public class Main {
             File file = new File(OPTIONS_PATHNAME);
             Scanner reader = new Scanner(file);
             StructureSeedThread.START_SEED = Long.parseLong(reader.nextLine());
-            StructureSeedThread.MAX_SEEDS = Integer.parseInt(reader.nextLine());
+            StructureSeedThread.END_SEED = Integer.parseInt(reader.nextLine());
             THREAD_COUNT = Integer.parseInt(reader.nextLine());
             reader.close();
         } catch (FileNotFoundException e) {
